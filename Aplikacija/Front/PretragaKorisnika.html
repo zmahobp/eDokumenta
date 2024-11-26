@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Moj Profil</title>
+        
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        
+        <link href="css/styles.css" rel="stylesheet"/>
+         
+         <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body id="page-top">
+
+        
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"><img src="assets/img/navbar-logo.png" alt="eDokumenta" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Meni
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item" id="pretragaKorisnikaLink" ><a class="nav-link" href="PretragaKorisnika.html">Pretraga korisnika</a></li> 
+                        <li class="nav-item" id="kontaktLink"><a class="nav-link" href="Kontakt.html">Kontakt</a></li>   
+                        <li class="nav-item "><a class="nav-link" onclick="odjaviSe()" style="cursor: pointer;">Odjavi se</a></li>
+                    </ul>
+                </div>        
+            </div>
+        </nav>
+
+        <section class="page-section bg-light">
+            <div class="container pt-5">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="card mb-3 shadow p-3 mb-5 bg-white rounded">
+                            <h2 class="section-heading text-center">Pretraga korisnika</h2>
+                            <form class="form-inline pt-3" id="pretragaForma">
+                                <div class="col">
+                                    <div class="form-group col-lg-12 my-2">
+                                        <div class="col-12 mt-4">
+                                            <input type="text" class="form-control text-center" id="pretragaInput" placeholder="Pretraži po JMBG-u">
+                                        </div>
+                                        <div class="my-3 text-center">
+                                            <button type="button" class="btn btn-primary" id="pretraziBtn"><i class="fas fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-8" id="prvi" style="display:none;">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card mb-4 shadow p-3 mb-5 bg-white rounded">
+                                        <div class="card-body text-center d-flex flex-column align-items-center">
+                                          <img alt="avatar" id="profilnaSlika" class="rounded-circle img-fluid" style="width: 150px;">
+                                          <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#popupizmeniFotografiju">
+                                            <i class="bi bi-pencil"></i> Izmeni fotografiju
+                                          </button>
+                                          <h5 class="my-3"><span id="imePrezimeFunkcija"></span></h5>
+                                          <p class="text-muted mb-1"><span id="jmbgFunkcija"></span></p>
+                                          <p class="text-muted mb-4"><span id="adresaFunkcija"></span></p>
+                                          <div class="d-flex flex-wrap justify-content-center mb-2">
+                                              <button type="button" class="btn btn-primary mx-2" data-toggle="modal" data-target="#popupizmeniPodatke">Izmeni podatke</button>
+                                              <button type="button" class="btn btn-success mx-2" id="unaprediBtn" data-toggle="modal" data-target="#upgradeModal" style="display: none;">Sluzbeno lice</button>
+                                              <button type="button" class="btn btn-danger mx-2" id="unazadiBtn" data-toggle="modal" data-target="#removeModal" style="display: none;">Ukloni sluzbeno lice</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" >
+                    <div class="col-8" id="drugi" style="display:none;">
+                        <div class="card mb-4 shadow p-3 mb-5 bg-white rounded">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Ime i prezime</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0" id="imePrezime"></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Ime roditelja</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0" id="imeRoditelja"></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">JMBG</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0" id="jmbg"></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Username</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0" id="username"></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Email</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0" id="email"></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Adresa</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0" id="adresa"></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Grad i opština</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0" id="gradOpstina"></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Broj telefona</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0" id="brojTelefona"></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                      <p class="mb-0">Mesto rodjenja</p>
+                                  </div>
+                                  <div class="col-sm-9">
+                                      <p class="text-muted mb-0" id="mestorodjenja"></p>
+                                  </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                      <p class="mb-0">Datum rodjenja</p>
+                                  </div>
+                                  <div class="col-sm-9">
+                                      <p class="text-muted mb-0" id="datumrodjenja"></p>
+                                  </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                      <p class="mb-0">Pol</p>
+                                  </div>
+                                  <div class="col-sm-9">
+                                      <p class="text-muted mb-0" id="pol"></p>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-4" id="cetvrti" style="display:none;">
+                        <div class="card mb-3 shadow p-3 mb-5 bg-white rounded">
+                              <div class="card-body p-0">
+                                  <ul class="list-group list-group-flush rounded-3">
+                                      <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                          <i class="fa fa-calendar-days fa-lg"></i>
+                                          <h4 class="mb-0">Korisnikovi termini</h4>
+                                      </li>
+                                      <li id="termin">
+
+                                      </li>
+                                  </ul>
+                                  <div class="text-center mt-3" id="izmeniTerminDugmeMesto">
+                                      <button id="izmeniTerminDugme" class="btn btn-primary" data-toggle="modal" data-target="#popupTerminIzmeni">Izmeni termin</button>
+                              </div>                                      
+                              </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-12" id="treci" style="display:none;">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card mb-3 shadow p-3 mb-5 bg-white rounded">
+                                <div class="card-body p-0">
+                                    <ul class="list-group list-group-flush rounded-3">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                            <h4 class="mb-0">Korisnikova dokumenta</h4>
+                                            <i class="fa fa-file fa-lg"></i>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                          <div class="mx-2 ">
+                                            <p class="mb-0">Lična karta</p>
+                                          </div>
+                                          <div class="w-80 d-flex  flex-wrap justify-content-end">
+                                            <button class="btn btn-secondary  mx-2 my-2" id="dodajLicnuKartu" data-toggle="modal" data-target="#popupLicnaKarta">Dodaj dokument</button>
+                                            <button class="btn btn-primary  mx-2 my-2" id="prikaziPDFLicnaKarta" style="display: none;">Prikaži PDF</button>
+                                            <button class="btn btn-primary  mx-2 my-2" id="prikaziQRLicnaKarta" style="display: none;">Prikaži QR kod</button>
+                                            <button class="btn btn-primary  mx-2 my-2" id="izmeniLicnuKartu" style="display: none;" data-toggle="modal" data-target="#popupLicnaKartaIzmeni">Izmeni dokument</button>
+                                            <button class="btn btn-danger  mx-2 my-2" id="obrisiLicnaKarta" style="display: none;">Obriši dokument</button>
+                                          </div>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                          <div class="mx-2">
+                                            <p class="mb-0">Pasoš</p>
+                                          </div>
+                                          <div class="w-80 d-flex flex-wrap justify-content-end">
+                                            <button class="btn btn-secondary mx-2 my-2" id="dodajPasos" data-toggle="modal" data-target="#popupPasos">Dodaj dokument</button>
+                                            <button class="btn btn-primary mx-2 my-2" id="prikaziPDFPasos" style="display: none;">Prikaži PDF</button>
+                                            <button class="btn btn-primary mx-2 my-2" id="prikaziQRPasos" style="display: none;" >Prikaži QR kod</button>
+                                            <button class="btn btn-primary mx-2 my-2" id="izmeniPasos" style="display: none;" data-toggle="modal" data-target="#popupPasosIzmeni">Izmeni dokument</button>
+                                            <button class="btn btn-danger  mx-2 my-2" id="obrisiPasos" style="display: none;">Obriši dokument</button>
+                                          </div>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                          <div class="mx-2">
+                                            <p class="mb-0">Vozačka dozvola</p>
+                                          </div>
+                                          <div class="w-80 d-flex flex-wrap justify-content-end">
+                                            <button class="btn btn-secondary  mx-2 my-2" id="dodajVozacku" data-toggle="modal" data-target="#popupVozackaDozvola">Dodaj dokument</button>
+                                            <button class="btn btn-primary  mx-2 my-2" id="prikaziPDFVozacka" style="display: none;">Prikaži PDF</button>
+                                            <button class="btn btn-primary  mx-2 my-2" id="prikaziQRVozacka" style="display: none;" >Prikaži QR kod</button>
+                                            <button class="btn btn-primary  mx-2 my-2" id="izmeniVozacku" style="display: none;" data-toggle="modal" data-target="#popupVozackaDozvolaIzmeni">Izmeni dokument</button>
+                                            <button class="btn btn-danger mx-2 my-2" id="obrisiVozacka" style="display: none;">Obriši dokument</button>
+                                          </div>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                          <div class="mx-2">
+                                            <p class="mb-0">Saobraćajna dozvola</p>
+                                          </div>
+                                          <div class="w-80 d-flex flex-wrap justify-content-end">
+                                            <button class="btn btn-secondary  mx-2 my-2" id="dodajSaobracajnu" data-toggle="modal" data-target="#popupSaobracajnaDozvola">Dodaj dokument</button>
+                                            <button class="btn btn-primary  mx-2 my-2" id="prikaziPDFSaobracajna" style="display: none;">Prikaži PDF</button>
+                                            <button class="btn btn-primary  mx-2 my-2" id="prikaziQRSaobracajna" style="display: none;">Prikaži QR kod</button>
+                                            <button class="btn btn-primary  mx-2 my-2" id="izmeniSaobracajnu" style="display: none;" data-toggle="modal" data-target="#popupSaobracajnaDozvolaIzmeni">Izmeni dokument</button>
+                                            <button class="btn btn-danger  mx-2 my-2" id="obrisiSaobracajna" style="display: none;">Obriši dokument</button>
+                                          </div>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                          <div class="mx-2">
+                                            <p class="mb-0">Dozvola za oružje</p>
+                                          </div>
+                                          <div class="w-80 d-flex flex-wrap justify-content-end">
+                                            <button class="btn btn-secondary  mx-2 my-2" id="dodajOruzje" data-toggle="modal" data-target="#popupDozvolaZaOruzje">Dodaj dokument</button>
+                                            <button class="btn btn-primary mx-2 my-2" id="prikaziPDFOruzje" style="display: none;">Prikaži PDF</button>
+                                            <button class="btn btn-primary  mx-2 my-2" id="prikaziQROruzje" style="display: none;">Prikaži QR kod</button>
+                                            <button class="btn btn-primary mx-2 my-2" id="izmeniOruzje" style="display: none;" data-toggle="modal" data-target="#popupDozvolaZaOruzjeIzmeni">Izmeni dokument</button>
+                                            <button class="btn btn-danger  mx-2 my-2" id="obrisiOruzje" style="display: none;">Obriši dokument</button>
+                                          </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        
+        
+          
+          
+          
+
+        
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; eDokumenta 2023</div> 
+                    <div class="col-lg-4 text-lg-end">
+                        <a href="index.html" class="footer-logo-link">
+                            <img src="assets/img/edokumentalogo-crni.png" alt="eDokumenta" class="footer-logo" />
+                        </a>
+                    </div>    
+                </div>
+            </div>
+        </footer>
+
+
+                
+                <div class="modal fade" id="popupLicnaKarta" role="dialog">
+                  <div class="modal-dialog modal-dialog-centered model-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Dodaj ličnu kartu</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label for="brojLicneKarteInput">Broj lične karte</label>
+                          <input type="text" id="brojLicneKarteInput" name="licnaKarta" class="form-control" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="datumIzdavanjaLicneKarteInput">Datum izdavanja</label>
+                          <input type="date" id="datumIzdavanjaLicneKarteInput" name="datumIzdavanjaLicneKarte" class="form-control" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="datumIstekaLicneKarteInput">Datum isteka</label>
+                          <input type="date" id="datumIstekaLicneKarteInput" name="datumIstekaLicneKarte" class="form-control" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="izdatOdLicnaKartaInput">Izdat od</label>
+                          <input type="text" id="izdatOdLicnaKartaInput" name="izdatOdLicnaKarta" class="form-control" required>
+                        </div>
+                      </div>
+                      <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="dodajLicnuKartuBtn">Potvrdi</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="modal fade" id="popupLicnaKartaIzmeni" role="dialog">
+                  <div class="modal-dialog modal-dialog-centered model-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Izmeni ličnu kartu</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label for="brojLicneKarteInputIzmeni">Broj lične karte</label>
+                          <input type="text" id="brojLicneKarteInputIzmeni" name="licnaKarta" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="datumIzdavanjaLicneKarteInputIzmeni">Datum izdavanja</label>
+                          <input type="date" id="datumIzdavanjaLicneKarteInputIzmeni" name="datumIzdavanjaLicneKarte" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="datumIstekaLicneKarteInputIzmeni">Datum isteka</label>
+                          <input type="date" id="datumIstekaLicneKarteInputIzmeni" name="datumIstekaLicneKarte" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="izdatOdLicnaKartaInputIzmeni">Izdat od</label>
+                          <input type="text" id="izdatOdLicnaKartaInputIzmeni" name="izdatOdLicnaKarta" class="form-control" required>
+                        </div>
+                      </div>
+                      <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="izmeniLicnuKartuBtn">Potvrdi</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                
+                
+        
+                <div class="modal fade" id="popupPasos" role="dialog">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Dodaj pasoš</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label for="brojPasosaInput">Broj pasoša</label>
+                          <input type="text" class="form-control" id="brojPasosaInput" name="pasos" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="datumIzdavanjaPasosaInput">Datum izdavanja</label>
+                          <input type="date" class="form-control" id="datumIzdavanjaPasosaInput" name="datumIzdavanjaPasosa" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="datumIstekaPasosaInput">Datum isteka</label>
+                          <input type="date" class="form-control" id="datumIstekaPasosaInput" name="datumIstekaPasosa" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="izdatOdPasosInput">Izdat od</label>
+                          <input type="text" class="form-control" id="izdatOdPasosInput" name="izdatOdPasos" required>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="dodajPasosBtn">Potvrdi</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+        
+                <div class="modal fade" id="popupPasosIzmeni" role="dialog">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Izmeni pasoš</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label for="brojPasosaInputIzmeni">Broj pasoša</label>
+                          <input type="text" class="form-control" id="brojPasosaInputIzmeni" name="pasos" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="datumIzdavanjaPasosaInputIzmeni">Datum izdavanja</label>
+                          <input type="date" class="form-control" id="datumIzdavanjaPasosaInputIzmeni" name="datumIzdavanjaPasosa" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="datumIstekaPasosaInputIzmeni">Datum isteka</label>
+                          <input type="date" class="form-control" id="datumIstekaPasosaInputIzmeni" name="datumIstekaPasosa" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="izdatOdPasosInputIzmeni">Izdat od</label>
+                          <input type="text" class="form-control" id="izdatOdPasosInputIzmeni" name="izdatOdPasos" required>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="izmeniPasosBtn">Potvrdi</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  
+                  
+                  
+                <div class="modal fade" id="popupVozackaDozvola" role="dialog">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Dodaj vozačku dozvolu</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label for="brojVozackeDozvoleInput">Broj vozačke dozvole</label>
+                          <input type="text" class="form-control" id="brojVozackeDozvoleInput" name="vozackaDozvola" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="datumIzdavanjaVozackeDozvoleInput">Datum izdavanja</label>
+                          <input type="date" class="form-control" id="datumIzdavanjaVozackeDozvoleInput" name="datumIzdavanjaVozackeDozvole" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="datumIstekaVozackeDozvoleInput">Datum isteka</label>
+                          <input type="date" class="form-control" id="datumIstekaVozackeDozvoleInput" name="datumIstekaVozackeDozvole" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="izdatOdVozackaDozvolaInput">Izdat od</label>
+                          <input type="text" class="form-control" id="izdatOdVozackaDozvolaInput" name="izdatOdVozackaDozvola" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="kategorijaVozilaInput">Kategorija vozila</label>
+                          <select class="form-control" id="kategorijaVozilaInput" name="kategorijaVozila" required>
+                            <option value="AM">AM</option>
+                            <option value="A1">A1</option>
+                            <option value="A2">A2</option>
+                            <option value="A">A</option>
+                            <option value="B1">B1</option>
+                            <option value="B">B</option>
+                            <option value="BE">BE</option>
+                            <option value="C1">C1</option>
+                            <option value="C1E">C1E</option>
+                            <option value="C">C</option>
+                            <option value="CE">CE</option>
+                            <option value="D1">D1</option>
+                            <option value="D1E">D1E</option>
+                            <option value="D">D</option>
+                            <option value="DE">DE</option>
+                            <option value="F">F</option>
+                            <option value="M">M</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="dodajVozackuBtn">Potvrdi</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+        
+                <div class="modal fade" id="popupVozackaDozvolaIzmeni" role="dialog">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Izmeni vozačku dozvolu</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label for="brojVozackeDozvoleInputIzmeni">Broj vozačke dozvole:</label>
+                          <input type="text" class="form-control" id="brojVozackeDozvoleInputIzmeni" name="vozackaDozvola" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="datumIzdavanjaVozackeDozvoleInputIzmeni">Datum izdavanja:</label>
+                          <input type="date" class="form-control" id="datumIzdavanjaVozackeDozvoleInputIzmeni" name="datumIzdavanjaVozackeDozvole" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="datumIstekaVozackeDozvoleInputIzmeni">Datum isteka:</label>
+                          <input type="date" class="form-control" id="datumIstekaVozackeDozvoleInputIzmeni" name="datumIstekaVozackeDozvole" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="izdatOdVozackaDozvolaInputIzmeni">Izdat od:</label>
+                          <input type="text" class="form-control" id="izdatOdVozackaDozvolaInputIzmeni" name="izdatOdVozackaDozvola" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="kategorijaVozilaInputIzmeni">Kategorija vozila:</label>
+                          <select class="form-control" id="kategorijaVozilaInputIzmeni" name="kategorijaVozila" required>
+                            <option value="AM">AM</option>
+                            <option value="A1">A1</option>
+                            <option value="A2">A2</option>
+                            <option value="A">A</option>
+                            <option value="B1">B1</option>
+                            <option value="B">B</option>
+                            <option value="BE">BE</option>
+                            <option value="C1">C1</option>
+                            <option value="C1E">C1E</option>
+                            <option value="C">C</option>
+                            <option value="CE">CE</option>
+                            <option value="D1">D1</option>
+                            <option value="D1E">D1E</option>
+                            <option value="D">D</option>
+                            <option value="DE">DE</option>
+                            <option value="F">F</option>
+                            <option value="M">M</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="izmeniVozackuBtn">Potvrdi</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                
+                  
+                  
+        
+                <div class="modal fade" id="popupSaobracajnaDozvola" role="dialog">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Dodaj saobraćajnu dozvolu</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label for="brojSaobracajneDozvoleInput">Broj saobraćajne dozvole</label>
+                          <input type="text" class="form-control" id="brojSaobracajneDozvoleInput" name="brojSaobracajneDozvole" required pattern="[0-9]{8}">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="brojRegistracijeInput">Broj registracije</label>
+                          <input type="text" class="form-control" id="brojRegistracijeInput" name="brojRegistracije" required pattern="[A-Za-z]{2}\d{3}[A-Za-z]{2}">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="datumPrvogRegistrovanjaInput">Datum prvog registrovanja</label>
+                          <input type="date" class="form-control" id="datumPrvogRegistrovanjaInput" name="datumPrvogRegistrovanja" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="nosivostInput">Nosivost</label>
+                          <input type="text" class="form-control" id="nosivostInput" name="nosivost" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="masaInput">Masa</label>
+                          <input type="text" class="form-control" id="masaInput" name="masa" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="brojSedistaInput">Broj sedišta</label>
+                          <input type="text" class="form-control" id="brojSedistaInput" name="brojSedista" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="godinaProizvodnjeInput">Godina proizvodnje</label>
+                          <input type="text" class="form-control" id="godinaProizvodnjeInput" name="godinaProizvodnje" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="brojMotoraInput">Broj motora</label>
+                          <input type="text" class="form-control" id="brojMotoraInput" name="brojMotora" required >
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="brojSasijeInput">Broj šasije</label>
+                          <input type="text" class="form-control" id="brojSasijeInput" name="brojSasije" required >
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="markaInput">Marka</label>
+                          <input type="text" class="form-control" id="markaInput" name="marka" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="tipInput">Tip</label>
+                          <input type="text" class="form-control" id="tipInput" name="tip" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="datumIzdavanjaSaobracajneDozvoleInput">Datum izdavanja</label>
+                          <input type="date" class="form-control" id="datumIzdavanjaSaobracajneDozvoleInput" name="datumIzdavanjaSaobracajneDozvole" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="datumIstekaSaobracajneDozvoleInput">Datum isteka</label>
+                          <input type="date" class="form-control" id="datumIstekaSaobracajneDozvoleInput" name="datumIstekaSaobracajneDozvole" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="izdatOdSaobracajnaDozvolaInput">Izdat od</label>
+                          <input type="text" class="form-control" id="izdatOdSaobracajnaDozvolaInput" name="izdatOdSaobracajnaDozvola" required>
+                        </div>
+                      </div>
+                      <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="dodajSaobracajnuBtn">Potvrdi</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="modal fade" id="popupSaobracajnaDozvolaIzmeni" role="dialog">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Izmeni saobraćajnu dozvolu</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label for="brojSaobracajneDozvoleIzmeniInput">Broj saobraćajne dozvole</label>
+                          <input type="text" class="form-control" id="brojSaobracajneDozvoleIzmeniInput" name="brojSaobracajneDozvole" required pattern="[0-9]{8}">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="brojRegistracijeIzmeniInput">Broj registracije</label>
+                          <input type="text" class="form-control" id="brojRegistracijeIzmeniInput" name="brojRegistracije" required pattern="[A-Za-z]{2}\d{3}[A-Za-z]{2}">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="datumPrvogRegistrovanjaIzmeniInput">Datum prvog registrovanja</label>
+                          <input type="date" class="form-control" id="datumPrvogRegistrovanjaIzmeniInput" name="datumPrvogRegistrovanja" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="nosivostIzmeniInput">Nosivost</label>
+                          <input type="text" class="form-control" id="nosivostIzmeniInput" name="nosivost" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="masaIzmeniInput">Masa</label>
+                          <input type="text" class="form-control" id="masaIzmeniInput" name="masa" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="brojSedistaIzmeniInput">Broj sedišta</label>
+                          <input type="text" class="form-control" id="brojSedistaIzmeniInput" name="brojSedista" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="godinaProizvodnjeIzmeniInput">Godina proizvodnje</label>
+                          <input type="text" class="form-control" id="godinaProizvodnjeIzmeniInput" name="godinaProizvodnje" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="brojMotoraIzmeniInput">Broj motora</label>
+                          <input type="text" class="form-control" id="brojMotoraIzmeniInput" name="brojMotora" required >
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="brojSasijeIzmeniInput">Broj šasije</label>
+                          <input type="text" class="form-control" id="brojSasijeIzmeniInput" name="brojSasije" required >
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="markaIzmeniInput">Marka</label>
+                          <input type="text" class="form-control" id="markaIzmeniInput" name="marka" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="tipIzmeniInput">Tip</label>
+                          <input type="text" class="form-control" id="tipIzmeniInput" name="tip" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="datumIzdavanjaSaobracajneDozvoleIzmeniInput">Datum izdavanja</label>
+                          <input type="date" class="form-control" id="datumIzdavanjaSaobracajneDozvoleIzmeniInput" name="datumIzdavanjaSaobracajneDozvole" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="datumIstekaSaobracajneDozvoleIzmeniInput">Datum isteka</label>
+                          <input type="date" class="form-control" id="datumIstekaSaobracajneDozvoleIzmeniInput" name="datumIstekaSaobracajneDozvole" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="izdatOdSaobracajnaDozvolaIzmeniInput">Izdat od</label>
+                          <input type="text" class="form-control" id="izdatOdSaobracajnaDozvolaIzmeniInput" name="izdatOdSaobracajnaDozvola" required>
+                        </div>
+                      </div>
+                      <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="izmeniSaobracajnuBtn">Potvrdi</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                  
+        
+        
+                
+                <div class="modal fade" id="popupDozvolaZaOruzje" role="dialog">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Dodaj dozvolu za oružje</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label for="brojDozvoleZaOruzjeInput">Broj dozvole za oružje</label>
+                          <input type="text" class="form-control" id="brojDozvoleZaOruzjeInput" name="brojDozvoleZaOruzje" required pattern="[0-9]{9}">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="vrsteOruzjaInput">Vrste oružja</label>
+                          <input type="text" class="form-control" id="vrsteOruzjaInput" name="vrsteOruzja" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="kolicinaOruzjaInput">Količina oružja</label>
+                          <input type="text" class="form-control" id="kolicinaOruzjaInput" name="kolicinaOruzja" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="brojOruzjaPoVrstiInput">Broj oružja po vrsti</label>
+                          <input type="text" class="form-control" id="brojOruzjaPoVrstiInput" name="brojOruzjaPoVrsti" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="kalibarOruzjaInput">Kalibar oružja</label>
+                          <input type="text" class="form-control" id="kalibarOruzjaInput" name="kalibarOruzja" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="mestoUpotrebeInput">Mesto upotrebe</label>
+                          <input type="text" class="form-control" id="mestoUpotrebeInput" name="mestoUpotrebe" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="svrhaUpotrebeInput">Svrha upotrebe</label>
+                          <input type="text" class="form-control" id="svrhaUpotrebeInput" name="svrhaUpotrebe" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="datumIzdavanjaDozvoleZaOruzjeInput">Datum izdavanja</label>
+                          <input type="date" class="form-control" id="datumIzdavanjaDozvoleZaOruzjeInput" name="datumIzdavanjaDozvoleZaOruzje" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="datumIstekaDozvoleZaOruzjeInput">Datum isteka</label>
+                          <input type="date" class="form-control" id="datumIstekaDozvoleZaOruzjeInput" name="datumIstekaDozvoleZaOruzje" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="izdatOdDozvolaZaOruzjeInput">Izdat od</label>
+                          <input type="text" class="form-control" id="izdatOdDozvolaZaOruzjeInput" name="izdatOdDozvolaZaOruzje" required>
+                        </div>
+                      </div>
+                      <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="dodajOruzjeBtn">Potvrdi</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="modal fade" id="popupDozvolaZaOruzjeIzmeni" role="dialog">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Izmeni dozvolu za oružje</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label for="brojDozvoleZaOruzjeInputIzmeni">Broj dozvole za oružje</label>
+                          <input type="text" class="form-control" id="brojDozvoleZaOruzjeInputIzmeni" name="brojDozvoleZaOruzjeIzmeni" required pattern="[0-9]{9}">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="vrsteOruzjaInputIzmeni">Vrste oružja</label>
+                          <input type="text" class="form-control" id="vrsteOruzjaInputIzmeni" name="vrsteOruzjaIzmeni" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="kolicinaOruzjaInputIzmeni">Količina oružja</label>
+                          <input type="text" class="form-control" id="kolicinaOruzjaInputIzmeni" name="kolicinaOruzjaIzmeni" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="brojOruzjaPoVrstiInputIzmeni">Broj oružja po vrsti</label>
+                          <input type="text" class="form-control" id="brojOruzjaPoVrstiInputIzmeni" name="brojOruzjaPoVrstiIzmeni" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="kalibarOruzjaInputIzmeni">Kalibar oružja</label>
+                          <input type="text" class="form-control" id="kalibarOruzjaInputIzmeni" name="kalibarOruzjaIzmeni" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="mestoUpotrebeInputIzmeni">Mesto upotrebe</label>
+                          <input type="text" class="form-control" id="mestoUpotrebeInputIzmeni" name="mestoUpotrebeIzmeni" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="svrhaUpotrebeInputIzmeni">Svrha upotrebe</label>
+                          <input type="text" class="form-control" id="svrhaUpotrebeInputIzmeni" name="svrhaUpotrebeIzmeni" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="datumIzdavanjaDozvoleZaOruzjeInputIzmeni">Datum izdavanja</label>
+                          <input type="date" class="form-control" id="datumIzdavanjaDozvoleZaOruzjeInputIzmeni" name="datumIzdavanjaDozvoleZaOruzjeIzmeni" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="datumIstekaDozvoleZaOruzjeInputIzmeni">Datum isteka</label>
+                          <input type="date" class="form-control" id="datumIstekaDozvoleZaOruzjeInputIzmeni" name="datumIstekaDozvoleZaOruzjeIzmeni" required>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                          <label for="izdatOdDozvolaZaOruzjeInputIzmeni">Izdat od</label>
+                          <input type="text" class="form-control" id="izdatOdDozvolaZaOruzjeInputIzmeni" name="izdatOdDozvolaZaOruzjeIzmeni" required>
+                        </div>
+                      </div>
+                      <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="izmeniOruzjeBtn">Potvrdi</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  
+          
+          
+          
+          
+                  <div class="modal fade" id="popupizmeniFotografiju" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">Izmeni fotografiju</h4>
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                          
+                            <div class="form-group">
+                              <label for="novaSlikaInput">Izaberi sliku</label>
+                              <input type="file" class="form-control" id="fotografijaInputIzmeni" name="fotografijaInputIzmeni" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                          <button type="button" class="btn btn-primary" data-dismiss="modal" id="izmeniSlikuBtn">Potvrdi</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="modal fade" id="popupizmeniPodatke" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Izmeni svoje podatke</h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="form-group">
+                            <label for="jmbgpopupizmeni">JMBG</label>
+                            <input type="text" class="form-control" id="jmbgpopupizmeni" name="jmbg" required>
+                          </div>
+                          <hr>
+                          <div class="form-group">
+                            <label for="imepopupizmeni">Ime</label>
+                            <input type="text" class="form-control" id="imepopupizmeni" name="ime" required>
+                          </div>
+                          <hr>
+                          <div class="form-group">
+                            <label for="imeRoditeljapopupizmeni">Ime roditelja</label>
+                            <input type="text" class="form-control" id="imeRoditeljapopupizmeni" name="imeRoditelja" required>
+                          </div>
+                          <hr>
+                          <div class="form-group">
+                            <label for="prezimepopupizmeni">Prezime</label>
+                            <input type="text" class="form-control" id="prezimepopupizmeni" name="prezime" required>
+                          </div>
+                          <hr>
+          
+                          <div class="form-group">
+                            <label for="usernamepopupizmeni">Username</label>
+                            <input type="text" class="form-control" id="usernamepopupizmeni" name="username" required>
+                          </div>
+                          <hr>
+          
+                          <div class="form-group">
+                            <label for="emailpopupizmeni">Email</label>
+                            <input type="email" class="form-control" id="emailpopupizmeni" name="email" required>
+                          </div>
+                          <hr>
+          
+                          <div class="form-group">
+                            
+                            <label for="gradselectpopup">Grad</label>
+                              <select id="gradselectpopup" class="form-select" onchange="updateOpstine()">
+                                <option value="" selected disabled hidden></option>
+                                <option value="Beograd">Beograd</option>
+                                <option value="Novi Sad">Novi Sad</option>
+                                <option value="Niš">Niš</option>
+                                <option value="Kragujevac">Kragujevac</option>
+                                <option value="Subotica">Subotica</option>
+                                <option value="Pančevo">Pančevo</option>
+                                <option value="Novi Pazar">Novi Pazar</option>
+                                <option value="Čačak">Čačak</option>
+                                <option value="Kruševac">Kruševac</option>
+                                <option value="Zrenjanin">Zrenjanin</option>
+                                <option value="Smederevo">Smederevo</option>
+                            </select>
+                          </div>
+                          <hr>
+                          <div class="form-group">
+                              <select id="opstinaselectpopup" class="form-select" disabled>
+                                <option value="" selected disabled hidden></option>
+                            </select>
+                            <label for="opstinaselectpopup" class="form-label">Opstina</label>
+                          </div>
+                          <hr>
+                      
+          
+                          <div class="form-group">
+                            <label for="adresapopupizmeni">Ulica</label>
+                            <input type="text" class="form-control" id="adresapopupizmeni" name="adresa" required>
+                          </div>
+                          <hr>
+                          <div class="form-group">
+                            <label for="brojpopupizmeni">Broj</label>
+                            <input type="text" class="form-control" id="brojpopupizmeni" name="broj" required>
+                          </div>
+                          <hr>
+                          
+                          
+                            <div class="form-group row">
+                              <div class="col-4">
+                                <label for="danpopupizmeni">Dan:</label>
+                                <select id="danpopupizmeni" class="form-control" required>
+                                </select>
+                              </div>
+                              <div class="col-4">
+                                <label for="mesecpopupizmeni">Mesec:</label>
+                                <select id="mesecpopupizmeni" class="form-control" required>
+                                  <option value="0">Januar</option>
+                                  <option value="1">Februar</option>
+                                  <option value="2">Mart</option>
+                                  <option value="3">April</option>
+                                  <option value="4">Maj</option>
+                                  <option value="5">Jun</option>
+                                  <option value="6">Jul</option>
+                                  <option value="7">Avgust</option>
+                                  <option value="8">Septembar</option>
+                                  <option value="9">Oktobar</option>
+                                  <option value="10">Novembar</option>
+                                  <option value="11">Decembar</option>
+                                </select>
+                              </div>
+                              <div class="col-4">
+                                <label for="godinapopupizmeni">Godina:</label>
+                                <select id="godinapopupizmeni" class="form-control" required>
+                                  
+                                </select>
+                              </div>
+                            </div>
+                          
+                          <hr>
+                          
+                          <div class="form-group">
+                            <label for="brojTelefonapopupizmeni">Telefon</label>
+                            <input type="text" class="form-control" id="brojTelefonapopupizmeni" name="brojTelefona" required>
+                          </div>
+                          <hr>
+          
+                          <div class="form-group">
+                            <label for="mestoRodjenjapopupizmeni">Mesto rodjenja</label>
+                            <input type="text" class="form-control" id="mestoRodjenjapopupizmeni" name="mestoRodjenjapopupizmeni" required>
+                          </div>
+                          <hr>
+          
+                          <div class="form-group">
+                            <label for="polpopupizmeni">Pol</label>
+                            <select id="polpopupizmeni" class="form-control" name="polpopupizmeni"required>
+                              <option value="M">M</option>
+                              <option value="Ž">Ž</option>
+                            </select>
+                          </div>
+                          <hr>
+          
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                          <button type="button" class="btn btn-primary" data-dismiss="modal" id="PotvrdiIzmeneBtn">Potvrdi</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  
+                  
+                  <div class="modal fade" id="upgradeModal" tabindex="-1" role="dialog" aria-labelledby="upgradeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="upgradeModalLabel">Unapređenje naloga</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <p>Da li ste sigurni da želite da unapredite ovaj nalog u službeno lice?</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Odustani</button>
+                          <button type="button" class="btn btn-primary" id="confirmUpgradeBtn">Potvrdi</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="removeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="removeModalLabel">Uklanjanje statusa sluzbenog lica</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <p>Da li ste sigurni da želite da uklonite status sluzbenog lica sa ovog naloga?</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Odustani</button>
+                          <button type="button" class="btn btn-primary" id="confirmRemoveBtn">Potvrdi</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="modal fade" id="popupTerminIzmeni" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered model-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Izmeni termin</h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="form-group">
+                            <label for="statusTerminaInputIzmeni">Status</label>
+                            <input type="text" id="statusTerminaInputIzmeni" name="statusTermina" class="form-control" required>
+                          </div>
+                          <div class="form-group">
+                            <label for="opisTerminaIzmeni">Opis</label>
+                            <textarea id="opisTerminaIzmeni" class="form-control" placeholder="Unesite opis..." style="height: 150px;"></textarea>
+                          </div>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                          <button type="button" class="btn btn-primary" data-dismiss="modal" id="izmeniTerminPopupBtn">Potvrdi</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="modal fade" id="popupQRKod" role="dialog">
+                      <div class="modal-dialog modal-dialog-centered model-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">QR kod</h4>
+                          </div>
+                          <div class="modal-body d-flex flex-column align-items-center">
+                            <div id="qrCodeImage"></div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+
+
+
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        
+        <script type = "module" src="js/scripts.js"></script>
+        <script type="text/javascript" src="js/PretragaKorisnika.js"></script>
+        
+        
+        
+        
+    </body>
+</html>

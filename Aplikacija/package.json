@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "@babel/standalone": "^7.22.4",
+    "html5-qrcode": "^2.3.8",
+    "qr-scanner": "^1.4.2"
+  },
+  "name": "aplikacija",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
